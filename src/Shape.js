@@ -1,6 +1,8 @@
 import React from 'react';
 import dot from './red-dot.png';
 import './Shape.css';
+import './Image.css';
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 /**
 * Create a figure shape made out of lines of dot images
@@ -8,11 +10,6 @@ import './Shape.css';
 * state: shape
 **/
 var Shape = React.createClass({
-
-	// initialize shape state
-	getInitialState: function() {
-		return { shape: this.props.name };
-	},
 
 	// define figure shapes as an array of number of dots per line
 	figureShapes: {
@@ -22,10 +19,17 @@ var Shape = React.createClass({
 
 	// create a single line of a figure by numDots
 	line: function(numDots) {
+
 		var line = [];
 
 		for(let i=0; i<numDots; i++) {
-			line.push(<img key={i} src={dot} className="red-dot" alt="red-dot" />);
+			line.push(
+				<ReactCSSTransitionGroup transitionName="dots"
+               transitionAppear={true} transitionAppearTimeout={500}
+               transitionEnter={false} transitionLeave={false}>
+					<img key={i} src={dot} className="red-dot" alt="red-dot" />
+				</ReactCSSTransitionGroup>
+			);
 		}
 
 		return line;

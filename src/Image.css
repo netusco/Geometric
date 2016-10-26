@@ -1,0 +1,9 @@
+.dots-appear { 
+	opacity: 0.01;  
+}
+
+.dots-appear.dots-appear-active { 
+	opacity: 1; 
+	transition: opacity 500ms ease-in;
+}
+
